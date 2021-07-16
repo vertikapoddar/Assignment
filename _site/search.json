@@ -1,0 +1,29 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this site",
+      "description": "Some additional details about the website",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-07-16T09:44:36+08:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Assignment",
+      "description": "Welcome to the website. I hope you enjoy it!\n",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-07-16T09:44:37+08:00"
+    },
+    {
+      "path": "overview.html",
+      "title": "Overview",
+      "description": "A new article created using the Distill format.\n",
+      "author": [],
+      "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill for R Markdown at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-07-16T09:50:18+08:00"
+    }
+  ],
+  "collections": []
+}

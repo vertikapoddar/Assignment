@@ -1,0 +1,19 @@
+name: "Assignment"
+title: "Assignment"
+description: |
+  Assignment
+output_dir: "_site"
+navbar:
+  left:
+    - text: "Overview"
+      href: overview.html
+    - text: "Methodology"
+      href: methodology.html
+    - text: "Insights"
+      href: insights.html
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+output: distill::distill_article
