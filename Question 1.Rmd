@@ -1,0 +1,86 @@
+---
+title: "Question_1"
+description: |
+  A new article created using the Distill format.
+author:
+  - name: Vertika Poddar
+    
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(fig.retina =3,
+                      echo = TRUE,
+                      eval = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+## 2.1 Installing and launching R the packages
+
+The code chunk below will check if the R packages have been installed, if not, R will install the missing R packages before launching them.
+
+```{r}
+packages = c('readr','ggiraph','igraph', 'tidyverse','plotly','lubridate','raster', 'sf', 'tmap','DT', 'greekLetters', 'clock', 'crosstalk')
+for (p in packages){
+  if(!require(p, character.only = T)){
+    install.packages(p)
+  }
+  library(p, character.only = T)
+}
+```
+
+## 2.2 Getting the data
+
+Importing the data
+
+```{r}
+cc_data <- read_csv("C:/vertikapoddar/Assignment/data/cc_data.csv")
+lc_data <- read_csv("C:/vertikapoddar/Assignment/data/loyalty_data.csv")
+gps_data <- read_csv("C:/vertikapoddar/Assignment/data/gps.csv")
+emp_data <- read_csv("C:/vertikapoddar/Assignment/data/car-assignments.csv")
+```
+
+Data Transformation
+
+```{r}
+cc_data$timestamp = mdy_hm(cc_data$timestamp)
+cc_data$day = get_day(cc_data$timestamp)
+cc_data$hour = get_hour(cc_data$timestamp)
+lc_data$timestamp = mdy(lc_data$timestamp)
+lc_data$loyaltynum = as_factor(lc_data$loyaltynum)
+gps_data$Timestamp = mdy_hms(gps_data$Timestamp)
+gps_data$id = as_factor(gps_data$id)
+emp_data$CarID = as_factor(emp_data$CarID)
+```
+
+Creating a shared data
+
+```{r}
+d <- SharedData$new(cc_data, key = ~location)
+```
+
+```{r}
+bar_chart <- d %>%
+  plot_ly() %>%
+  count(location) %>%
+  add_bars(x = ~n, y =~ location) %>%
+  layout(barmode = "overlay")
+
+bar_chart
+```
+  
+  
+For heatmap
+
+```{r}
+#heat_map 
+```
+
+Combining the graphs
+```{r}
+#subplot(bar_chart, heat_map)
+```
+
+
+
