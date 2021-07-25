@@ -17,6 +17,20 @@
       "last_modified": "2021-07-16T09:44:37+08:00"
     },
     {
+      "path": "methodology.html",
+      "title": "Untitled",
+      "description": "A new article created using the Distill format.\n",
+      "author": [
+        {
+          "name": "Nora Jones",
+          "url": "https://example.com/norajones"
+        }
+      ],
+      "date": "`r Sys.Date()`",
+      "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill for R Markdown at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-07-25T20:32:02+08:00"
+    },
+    {
       "path": "overview.html",
       "title": "Overview",
       "description": "A new article created using the Distill format.\n",
