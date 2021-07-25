@@ -63,6 +63,8 @@ lc_data$loyaltynum = as_factor(lc_data$loyaltynum)
 gps_data$Timestamp = mdy_hms(gps_data$Timestamp)
 gps_data$id = as_factor(gps_data$id)
 emp_data$CarID = as_factor(emp_data$CarID)
+gps_data$day =  get_day(gps_data$Timestamp)
+gps_data$hour = get_hour(gps_data$Timestamp)
 ```
 
 Start analysing the dataset by counting the number of cards in both the dataframes.
@@ -97,14 +99,14 @@ cc_lc_freq <- full_join(cc_freq, lc_freq, by = "location" )
 ```{r}
 xform <- list(categoryorder ="total ascending",
               categoryarray = c((cc_lc_freq$location)),
-              tickfont = list(size =8))
+              tickfont = list(size =6))
 
 
 popular_location <- plot_ly(cc_lc_freq, x = ~credit_card, y = ~location, type = 'bar', name = 'credit_card', text = ~credit_card, textposition = 'auto')
 popular_location <- popular_location %>%
   add_trace(x = ~loyalty_card, name = 'loyalty_card', text = ~loyalty_card, textposition = 'auto')
 popular_location <- popular_location %>%
-  layout(title = "Frequency bar chart for locations as per credit card and loyalyty card data", 
+  layout(title = "Frequency chart for locations as per credit card and loyalyty card data", 
          xaxis = list(title = 'number of vists'), 
          barmode = 'group', 
          yaxis = xform)
@@ -112,6 +114,70 @@ popular_location <- popular_location %>%
 popular_location
 ```
 
+```{r}
+cc_filter <- cc_data %>%
+  filter(day == 6, hour == 7)
 
+cc_filter %>%
+  group_by(location) %>%
+  summarize(n_vists = n())
+```
 
+```{r}
+cc_time <- cc_data %>%
+  group_by(hour, location) %>%
+  summarize(n_vists = n())
 
+cc_time
+```
+
+Below is the code chunk to work with geospatial data
+
+QGIS software has been used to georeference the map with the coordinates.
+
+```{r}
+bgmap <- raster("C:/vertikapoddar/data/MC2.tif")
+bgmap
+```
+
+```{r}
+tm_shape(bgmap) + 
+  tm_rgb(bgmap, r = 1, g = 2, b = 3,
+         alpha = NA,
+         saturation = 1,
+         interpolate = TRUE,
+         max.value = 255)
+```
+
+```{r}
+Abila_st <- st_read(dsn = "C:/vertikapoddar/Assignment/data/Geospatial",
+                    layer = "Abila")
+```
+
+```{r}
+gps_sf <- st_as_sf(gps_data, 
+                   coords = c("long", "lat"),
+                   crs = 4326)
+```
+
+```{r}
+gps_path <- gps_sf %>%
+  group_by(day, hour) %>%
+  summarize(m = mean(Timestamp),
+            do_union = FALSE) %>%
+  st_cast("LINESTRING")
+```
+
+```{r}
+gps_path_selected <- gps_path %>%
+  filter(day == 6, hour == 10)
+tmap_mode("view")
+tm_shape(bgmap) +
+tm_rgb(bgmap, r = 1, g = 2, b = 3,
+         alpha = NA,
+         saturation = 1,
+         interpolate = TRUE,
+         max.value = 255) +
+  tm_shape(gps_path_selected) +
+  tm_lines()
+```

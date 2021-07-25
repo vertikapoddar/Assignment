@@ -22,6 +22,9 @@ knitr::opts_chunk$set(fig.retina =3,
 
 The most popular location is identified using the credit card and the loyalty card dataset. A frequency bar chart has been ploted to visualize the same.
 
+![](images/popular location.png){width=100%}
+
+
 The five most popular location in the span of two weeks are as follows:
 
 S/N | Location | # vists_credit card | #vists_loyalty card
