@@ -1,19 +1,39 @@
 ---
 title: "Overview"
 description: |
-  A new article created using the Distill format.
+  Below is the brief of the case
+author:
+  - name: Vertika Poddar
+    affiliation: Singapore Management University
+date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(fig.retina =3,
+                      echo = TRUE,
+                      eval = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
 ```
 
-Distill is a publication format for scientific and technical writing, native to the web. 
-
-Learn more about using Distill for R Markdown at <https://rstudio.github.io/distill>.
+![](images/vast challenge.png)
 
 
+In the roughly twenty years that Tethys-based GAStech has been operating a natural gas production site in the island country of Kronos, it has produced remarkable profits and developed strong relationships with the government of Kronos. However, GAStech has not been as successful in demonstrating environmental stewardship.
 
+In January, 2014, the leaders of GAStech are celebrating their new-found fortune as a result of the initial public offering of their very successful company. In the midst of this celebration, several employees of GAStech go missing. An organization known as the Protectors of Kronos (POK) is suspected in the disappearance, but things may not be what they seem.
 
+As an expert in visual analytics, you are called in to help law enforcement from Kronos and Tethys.
+
+Many of the Abila, Kronos-based employees of GAStech have company cars which are approved for both personal and business use. Those who do not have company cars have the ability to check out company trucks for business use, but these trucks cannot be used for personal business.
+
+Employees with company cars are happy to have these vehicles, because the company cars are generally much higher quality than the cars they would be able to afford otherwise. However, GAStech does not trust their employees. Without the employees? knowledge, GAStech has installed geospatial tracking software in the company vehicles. The vehicles are tracked periodically as long as they are moving.
+
+This vehicle tracking data has been made available to law enforcement to support their investigation. Unfortunately, data is not available for the day the GAStech employees went missing. Data is only available for the two weeks prior to the disappearance.
+
+To promote local businesses, Kronos based companies provide a Kronos Kares benefit card to GASTech employees giving them discounts and rewards in exchange for collecting information about their credit card purchases and preferences as recorded on loyalty cards. This data has been made available to investigators in the hopes that it can help resolve the situation. However, Kronos Kares does not collect personal information beyond purchases.
+
+As a visual analytics expert assisting law enforcement, your mission is to identify which GASTech employees made which purchases and identify suspicious patterns of behavior. You must cope with uncertainties that result from missing, conflicting, and imperfect data to make recommendations for further investigation.
 
