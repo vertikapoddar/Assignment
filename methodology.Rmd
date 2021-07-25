@@ -114,21 +114,32 @@ popular_location <- popular_location %>%
 popular_location
 ```
 
-```{r}
-cc_filter <- cc_data %>%
-  filter(day == 6, hour == 7)
-
-cc_filter %>%
-  group_by(location) %>%
-  summarize(n_vists = n())
-```
+Below code chunks identify the time at what the top 5 popular locations were most visited
 
 ```{r}
-cc_time <- cc_data %>%
+popular_time <- cc_data %>%
+  filter(location == c("Katrina's Cafe", "Hippokampos", "Guy's Gyros", "Brew've Been Served", "Hallowed Grounds")) %>%
   group_by(hour, location) %>%
   summarize(n_vists = n())
 
-cc_time
+popular_time
+```
+
+
+
+```{r}
+popular_time_graph <- plot_ly(popular_time, 
+                              x = ~hour, 
+                              y = ~n_vists, 
+                              type = "bar",
+                              group = ~location,
+                              color = ~location)
+
+popular_time_graph <- popular_time_graph %>%
+  layout(xaxis = list(tickmode = "linear"),
+         yaxis = list(tickmode = "linear"))
+
+popular_time_graph
 ```
 
 Below is the code chunk to work with geospatial data
@@ -180,4 +191,10 @@ tm_rgb(bgmap, r = 1, g = 2, b = 3,
          max.value = 255) +
   tm_shape(gps_path_selected) +
   tm_lines()
+```
+
+The below code chunk combines the gps data and the employee data to map the employee against its travel data
+
+```{r}
+#emp_gps_data <- full_join(gps_data, emp_data, by.x = character("CarID"), by.y = character("id"))
 ```

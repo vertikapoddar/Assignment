@@ -39,6 +39,25 @@ S/N | Location | # vists_credit card | #vists_loyalty card
 
 **POPULAR TIME**
 
+The below summarizes the time at which these locations were most popular:
+
+S/N | Location | Most popular time
+----|-----------|----------
+1. | Katrina's Cafe | 8 pm
+2. | Hippokampos | 8 pm
+3. | Guy's Gyros |8 pm
+4. | Brew've Been Served | 7 am
+5. | Hallowed Grounds | 7 am
+
+![](images/Katrina cafe.png){width=100%}
+![](images/Hippokampos.png){width=100%}
+
+![](images/guys gyro.png){width=100%}
+
+![](images/brew.png){width=100%}
+
+![](images/hallowed grounds.png){width=100%}
+
 
 **ANOMALY**
 
