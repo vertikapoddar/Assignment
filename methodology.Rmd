@@ -1,24 +1,116 @@
 ---
-title: "Untitled"
+title: "Methodology"
 description: |
-  A new article created using the Distill format.
+  This webpage describes the methodology deployed in the crime investigation journey.
 author:
-  - name: Nora Jones 
-    url: https://example.com/norajones
-    affiliation: Spacely Sprockets
-    affiliation_url: https://example.com/spacelysprokets
+  - name: Vertika Poddar
+    affiliation: Singapore Management University
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(fig.retina =3,
+                      echo = TRUE,
+                      eval = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
 ```
 
-Distill is a publication format for scientific and technical writing, native to the web. 
+The code chunk below is used to load and install all the necessary packages
 
-Learn more about using Distill for R Markdown at <https://rstudio.github.io/distill>.
+```{r}
+packages = c('readr','ggiraph','igraph', 'tidyverse','plotly','lubridate','raster', 'sf', 'tmap','DT', 'greekLetters', 'clock', 'crosstalk')
+for (p in packages){
+  if(!require(p, character.only = T)){
+    install.packages(p)
+  }
+  library(p, character.only = T)
+}
+```
 
+The code chunk below imports the data
+
+```{r}
+cc_data <- read_csv("C:/vertikapoddar/Assignment/data/cc_data.csv")
+lc_data <- read_csv("C:/vertikapoddar/Assignment/data/loyalty_data.csv")
+gps_data <- read_csv("C:/vertikapoddar/Assignment/data/gps.csv")
+emp_data <- read_csv("C:/vertikapoddar/Assignment/data/car-assignments.csv")
+```
+
+We will examine the structure of the imported dataframe using *glimpse()* of **dplyr**
+
+```{r}
+glimpse(cc_data)
+glimpse(lc_data)
+glimpse(gps_data)
+glimpse(emp_data)
+```
+
+**Comments / Observations** : *timestamp* of *cc_data*, *lc_data* and *gps_data* is 'Character' data type instead of 'Date' type. Modify the data type to 'Date' before proceeding. Also, *last4ccnum* of *cc_data*, *id* of *gps_data* and *CarID* of *emp_data* needs to be transformed to 'Character' type.
+
+**Wrangling Data Set**
+
+The code chunk below will perform the required changes
+
+```{r}
+cc_data$timestamp = mdy_hm(cc_data$timestamp)
+cc_data$day = get_day(cc_data$timestamp)
+cc_data$hour = get_hour(cc_data$timestamp)
+lc_data$timestamp = mdy(lc_data$timestamp)
+lc_data$loyaltynum = as_factor(lc_data$loyaltynum)
+gps_data$Timestamp = mdy_hms(gps_data$Timestamp)
+gps_data$id = as_factor(gps_data$id)
+emp_data$CarID = as_factor(emp_data$CarID)
+```
+
+Start analysing the dataset by counting the number of cards in both the dataframes.
+
+The code chuck below counts the number of unique cards in the credit card dataset.
+
+```{r}
+cc_count <- unique(cc_data$last4ccnum)
+length(cc_count)
+```
+The code chuck below counts the number of unique cards in the loyalty card dataset.
+
+```{r}
+lc_count <- unique(lc_data$loyaltynum)
+length(lc_count)
+```
+
+To find out the most popular location using the credit card and loyalty card data, combine the two dataset, below is the code chunk:
+
+```{r}
+cc_freq <- cc_data %>%
+  count(location) %>%
+  rename(credit_card = n)
+
+lc_freq <- lc_data %>%
+  count(location) %>%
+  rename(loyalty_card = n)
+
+cc_lc_freq <- full_join(cc_freq, lc_freq, by = "location" )
+```
+
+```{r}
+xform <- list(categoryorder ="total ascending",
+              categoryarray = c((cc_lc_freq$location)),
+              tickfont = list(size =8))
+
+
+popular_location <- plot_ly(cc_lc_freq, x = ~credit_card, y = ~location, type = 'bar', name = 'credit_card', text = ~credit_card, textposition = 'auto')
+popular_location <- popular_location %>%
+  add_trace(x = ~loyalty_card, name = 'loyalty_card', text = ~loyalty_card, textposition = 'auto')
+popular_location <- popular_location %>%
+  layout(title = "Frequency bar chart for locations as per credit card and loyalyty card data", 
+         xaxis = list(title = 'number of vists'), 
+         barmode = 'group', 
+         yaxis = xform)
+
+popular_location
+```
 
 
 

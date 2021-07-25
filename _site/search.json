@@ -17,18 +17,32 @@
       "last_modified": "2021-07-16T09:44:37+08:00"
     },
     {
-      "path": "methodology.html",
-      "title": "Untitled",
-      "description": "A new article created using the Distill format.\n",
+      "path": "insights.html",
+      "title": "Insights",
+      "description": "Insights from the crime investigation are documented here\n",
       "author": [
         {
-          "name": "Nora Jones",
-          "url": "https://example.com/norajones"
+          "name": "Vertika Poddar",
+          "url": {}
         }
       ],
       "date": "`r Sys.Date()`",
-      "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill for R Markdown at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-07-25T20:32:02+08:00"
+      "contents": "\r\nMOST POPULAR LOCATION\r\nThe most popular location is identified using the credit card and the loyalty card dataset. A frequency bar chart has been ploted to visualize the same.\r\nThe five most popular location in the span of two weeks are as follows:\r\nS/N\r\nLocation\r\n# vists_credit card\r\n#vists_loyalty card\r\n1.\r\nKatrina’s Cafe\r\n212\r\n195\r\n2.\r\nHippokampos\r\n171\r\n155\r\n3.\r\nGuy’s Gyros\r\n158\r\n146\r\n4.\r\nBrew’ve Been Served\r\n156\r\n140\r\n5.\r\nHallowed Grounds\r\n92\r\n80\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-07-25T21:39:37+08:00"
+    },
+    {
+      "path": "methodology.html",
+      "title": "Methodology",
+      "description": "This webpage describes the methodology deployed in the crime investigation journey.\n",
+      "author": [
+        {
+          "name": "Vertika Poddar",
+          "url": {}
+        }
+      ],
+      "date": "`r Sys.Date()`",
+      "contents": "\r\nThe code chunk below is used to load and install all the necessary packages\r\n\r\n\r\npackages = c('readr','ggiraph','igraph', 'tidyverse','plotly','lubridate','raster', 'sf', 'tmap','DT', 'greekLetters', 'clock', 'crosstalk')\r\nfor (p in packages){\r\n  if(!require(p, character.only = T)){\r\n    install.packages(p)\r\n  }\r\n  library(p, character.only = T)\r\n}\r\n\r\n\r\n\r\nThe code chunk below imports the data\r\n\r\n\r\ncc_data <- read_csv(\"C:/vertikapoddar/Assignment/data/cc_data.csv\")\r\nlc_data <- read_csv(\"C:/vertikapoddar/Assignment/data/loyalty_data.csv\")\r\ngps_data <- read_csv(\"C:/vertikapoddar/Assignment/data/gps.csv\")\r\nemp_data <- read_csv(\"C:/vertikapoddar/Assignment/data/car-assignments.csv\")\r\n\r\n\r\n\r\nWe will examine the structure of the imported dataframe using glimpse() of dplyr\r\n\r\n\r\nglimpse(cc_data)\r\n\r\n\r\nRows: 1,490\r\nColumns: 4\r\n$ timestamp  <chr> \"1/6/2014 7:28\", \"1/6/2014 7:34\", \"1/6/2014 7:...\r\n$ location   <chr> \"Brew've Been Served\", \"Hallowed Grounds\", \"Br...\r\n$ price      <dbl> 11.34, 52.22, 8.33, 16.72, 4.24, 4.17, 28.73, ...\r\n$ last4ccnum <dbl> 4795, 7108, 6816, 9617, 7384, 5368, 7253, 4948...\r\n\r\nglimpse(lc_data)\r\n\r\n\r\nRows: 1,392\r\nColumns: 4\r\n$ timestamp  <chr> \"1/6/2014\", \"1/6/2014\", \"1/6/2014\", \"1/6/2014\"...\r\n$ location   <chr> \"Brew've Been Served\", \"Brew've Been Served\", ...\r\n$ price      <dbl> 4.17, 9.60, 16.53, 11.51, 12.93, 4.27, 11.20, ...\r\n$ loyaltynum <chr> \"L2247\", \"L9406\", \"L8328\", \"L6417\", \"L1107\", \"...\r\n\r\nglimpse(gps_data)\r\n\r\n\r\nRows: 685,169\r\nColumns: 4\r\n$ Timestamp <chr> \"01/06/2014 06:28:01\", \"01/06/2014 06:28:01\", \"...\r\n$ id        <dbl> 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35,...\r\n$ lat       <dbl> 36.07623, 36.07622, 36.07621, 36.07622, 36.0762...\r\n$ long      <dbl> 24.87469, 24.87460, 24.87444, 24.87425, 24.8741...\r\n\r\nglimpse(emp_data)\r\n\r\n\r\nRows: 44\r\nColumns: 5\r\n$ LastName               <chr> \"Calixto\", \"Azada\", \"Balas\", \"Barr...\r\n$ FirstName              <chr> \"Nils\", \"Lars\", \"Felix\", \"Ingrid\",...\r\n$ CarID                  <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,...\r\n$ CurrentEmploymentType  <chr> \"Information Technology\", \"Enginee...\r\n$ CurrentEmploymentTitle <chr> \"IT Helpdesk\", \"Engineer\", \"Engine...\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-07-25T21:07:43+08:00"
     },
     {
       "path": "overview.html",

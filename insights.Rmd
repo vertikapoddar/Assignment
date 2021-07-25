@@ -1,0 +1,52 @@
+---
+title: "Insights"
+description: |
+  Insights from the crime investigation are documented here
+author:
+  - name: Vertika Poddar
+    affiliation: Singapore Management University
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(fig.retina =3,
+                      echo = TRUE,
+                      eval = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+**MOST POPULAR LOCATION**
+
+The most popular location is identified using the credit card and the loyalty card dataset. A frequency bar chart has been ploted to visualize the same.
+
+The five most popular location in the span of two weeks are as follows:
+
+S/N | Location | # vists_credit card | #vists_loyalty card
+----|-----------|----------|---------
+1. | Katrina's Cafe | 212 | 195
+2. | Hippokampos | 171 | 155
+3. | Guy's Gyros |158 | 146
+4. | Brew've Been Served | 156 | 140
+5. | Hallowed Grounds | 92 | 80
+
+**Observation** - All the popular places are eatery.
+
+**POPULAR TIME**
+
+
+**ANOMALY**
+
+Prima facie the following anomalies have been observed from the frequency bar chart:
+
+1. There are couple of instances where the number of vists made to a location as per the credit card do not match with the loyalty card data.
+
+
+
+
+
+
+
+
