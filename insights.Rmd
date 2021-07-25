@@ -39,9 +39,13 @@ S/N | Location | # vists_credit card | #vists_loyalty card
 
 **ANOMALY**
 
-Prima facie the following anomalies have been observed from the frequency bar chart:
+Prima-facie the following anomalies have been observed from the frequency bar chart:
 
-1. There are couple of instances where the number of vists made to a location as per the credit card do not match with the loyalty card data.
+1. There are couple of instances where the number of vists made to a location as per the credit card do not match with the loyalty card data. This indicates missing data in the two datasets.
+
+2. There are 55 credit cards whereas the number of loyalty cards is 54. The credit card with no corresponding loyalty card will be identified in later part of the investigation.
+
+
 
 
 
